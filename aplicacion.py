@@ -50,3 +50,6 @@ def modificar_tarea(tarea_id):
         tarea['fecha_maxima'] = data.get('fecha_maxima', tarea['fecha_maxima'])
         return jsonify(tarea), 200
     return jsonify({'mensaje': 'La tarea no se podido encontrar.'}), 404
+
+if __name__ == '__main__':
+    app.run(debug=True)
