@@ -40,3 +40,13 @@ def eliminar_tarea(tarea_id):
     tareas = [tarea for tarea in tareas if tarea['id'] != tarea_id]
     return jsonify({'mensaje': 'La tarea se elimino con éxito!'}), 200
 
+#PUT
+@app.route('/tareas/<int:tarea_id>', methods=['PUT'])
+def modificar_tarea(tarea_id):
+    data = request.get_json()
+    tarea = next((tarea for tarea in tareas if tarea['id'] == tarea_id), None)
+    if tarea:
+        tarea['descripcion'] = data.get('descripcion', tarea['descripcion'])
+        tarea['fecha_maxima'] = data.get('fecha_maxima', tarea['fecha_maxima'])
+        return jsonify(tarea), 200
+    return jsonify({'mensaje': 'La tarea no se podido encontrar.'}), 404
