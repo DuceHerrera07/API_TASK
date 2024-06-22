@@ -25,3 +25,10 @@ def crear_tarea():
 def listar_tareas():
     return jsonify(tareas), 200
 
+#En listar una tarea por identificador GET
+@app.route('/tareas/<int:tarea_id>', methods=['GET'])
+def obtener_tarea(tarea_id):
+    tarea = next((tarea for tarea in tareas if tarea['id'] == tarea_id), None)
+    if tarea:
+        return jsonify(tarea), 200
+    return jsonify({'mensaje': 'Tarea no encontrada'}), 404
