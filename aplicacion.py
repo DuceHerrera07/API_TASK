@@ -32,3 +32,11 @@ def obtener_tarea(tarea_id):
     if tarea:
         return jsonify(tarea), 200
     return jsonify({'mensaje': 'Tarea no encontrada'}), 404
+
+#DELETE
+@app.route('/tareas/<int:tarea_id>', methods=['DELETE'])
+def eliminar_tarea(tarea_id):
+    global tareas
+    tareas = [tarea for tarea in tareas if tarea['id'] != tarea_id]
+    return jsonify({'mensaje': 'La tarea se elimino con éxito!'}), 200
+
