@@ -6,6 +6,11 @@ app = Flask(__name__)
 tareas = []
 id_counter = 1
 
+# Ruta raíz
+@app.route('/', methods=['GET'])
+def raiz():
+    return jsonify({'mensaje': 'Bienvenidos AL INFIERNO de la API de Tareas'}), 200
+
 #POST
 @app.route('/tareas', methods=['POST'])
 def crear_tarea():
